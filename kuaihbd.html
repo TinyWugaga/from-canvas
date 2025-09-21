@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>乖寶生日快樂！</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            height: 100vh;
+            overflow: hidden;
+            background: linear-gradient(135deg, #4D81E8 0%, #E6D685 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .card {
+            width: 400px;
+            height: 500px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: scale(1.05);
+        }
+        
+        .birthday-icon {
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+        
+        .name {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #4D81E8;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .message {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+        
+        .click-hint {
+            font-size: 0.9rem;
+            color: #666;
+            opacity: 0.8;
+            animation: pulse 2s infinite;
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #4D81E8;
+            opacity: 0;
+        }
+        
+        .confetti:nth-child(odd) {
+            background: #E6D685;
+        }
+        
+        .confetti:nth-child(3n) {
+            background: #FF6B9D;
+        }
+        
+        .confetti:nth-child(4n) {
+            background: #4ECDC4;
+        }
+        
+        .confetti:nth-child(5n) {
+            background: #FFE66D;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.8;
+            }
+            50% {
+                opacity: 0.4;
+            }
+        }
+        
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+        
+        .confetti-active {
+            animation: confetti-fall 3s linear;
+        }
+        
+        .celebration-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            font-weight: 700;
+            color: #4D81E8;
+            opacity: 0;
+            pointer-events: none;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .celebration-active {
+            animation: celebration 2s ease-out;
+        }
+        
+        @keyframes celebration {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.5);
+            }
+            50% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .card {
+                width: 90vw;
+                height: 70vh;
+                padding: 20px;
+            }
+            
+            .name {
+                font-size: 2rem;
+            }
+            
+            .message {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card" onclick="celebrate()">
+        <div class="birthday-icon">
+            <svg width="160" height="160" viewBox="0 0 100 100">
+                <!-- 生日蛋糕 -->
+                <rect x="20" y="60" width="60" height="30" fill="#E6D685" stroke="#4D81E8" stroke-width="2" rx="5"/>
+                <rect x="25" y="50" width="50" height="20" fill="#FFB6C1" stroke="#4D81E8" stroke-width="2" rx="3"/>
+                
+                <!-- 蠟燭 -->
+                <rect x="35" y="35" width="3" height="15" fill="#4D81E8"/>
+                <rect x="48" y="35" width="3" height="15" fill="#4D81E8"/>
+                <rect x="61" y="35" width="3" height="15" fill="#4D81E8"/>
+                
+                <!-- 火焰 -->
+                <ellipse cx="36.5" cy="32" rx="2" ry="4" fill="#FF6B35">
+                    <animate attributeName="ry" values="4;6;4" dur="1s" repeatCount="indefinite"/>
+                </ellipse>
+                <ellipse cx="49.5" cy="32" rx="2" ry="4" fill="#FF6B35">
+                    <animate attributeName="ry" values="6;4;6" dur="1s" repeatCount="indefinite"/>
+                </ellipse>
+                <ellipse cx="62.5" cy="32" rx="2" ry="4" fill="#FF6B35">
+                    <animate attributeName="ry" values="4;6;4" dur="1s" repeatCount="indefinite"/>
+                </ellipse>
+                
+                <!-- 裝飾 -->
+                <circle cx="30" cy="60" r="3" fill="#4D81E8"/>
+                <circle cx="45" cy="65" r="3" fill="#E6D685"/>
+                <circle cx="60" cy="60" r="3" fill="#4D81E8"/>
+                <circle cx="70" cy="65" r="3" fill="#E6D685"/>
+            </svg>
+        </div>
+        
+        <div class="name">乖寶</div>
+        <div class="message">小寶寶最愛的阿可<br>生日快樂！</div>
+        <div class="click-hint">Click Me</div>
+        
+        <div class="celebration-text" id="celebrationText">生日快樂！🎂</div>
+    </div>
+
+    <script>
+        function celebrate() {
+            // 顯示慶祝文字
+            const celebrationText = document.getElementById('celebrationText');
+            celebrationText.classList.add('celebration-active');
+            
+            // 創建五彩紙屑
+            for (let i = 0; i < 50; i++) {
+                createConfetti();
+            }
+            
+            // 清理動畫類別
+            setTimeout(() => {
+                celebrationText.classList.remove('celebration-active');
+            }, 2000);
+        }
+        
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.classList.add('confetti');
+            
+            // 隨機位置
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.animationDelay = Math.random() * 2 + 's';
+            confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+            
+            // 隨機形狀
+            if (Math.random() > 0.5) {
+                confetti.style.borderRadius = '50%';
+            }
+            
+            document.body.appendChild(confetti);
+            confetti.classList.add('confetti-active');
+            
+            // 清理元素
+            setTimeout(() => {
+                confetti.remove();
+            }, 5000);
+        }
+        
+        // 自動播放輕微動畫
+        setInterval(() => {
+            if (Math.random() > 0.7) {
+                createConfetti();
+            }
+        }, 3000);
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'982c464a7212a361',t:'MTc1ODQ4NjE0Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
